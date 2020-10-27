@@ -1,6 +1,22 @@
 class TasksController < ApplicationController
+#  before_action :require_user_logged_in, only: [:index, :show]
+
+   before_action :require_user_logged_in
+  
+  include SessionsHelper
+  
   def index
-      @tasks=Task.all
+    
+#  @tasks = Task.new(task_params)
+#  @tasks.user_id = current_user.id
+#  @tasks=Task.all
+#  @task  = current_user.tasks.build
+#  @tasks = current_user.tasks.order(id: :desc).page(params[:page])
+
+   @tasks = current_user.tasks
+   
+
+
   end
 
   def show
@@ -12,7 +28,9 @@ class TasksController < ApplicationController
   end
 
   def create
-        @task = Task.new(task_params)
+
+    @task = Task.new(task_params)
+    @task.user_id = current_user.id
 
     if @task.save
       flash[:success] = 'タスクが正常に投稿されました'
@@ -51,7 +69,7 @@ class TasksController < ApplicationController
 
   # Strong Parameter
   def task_params
-    params.require(:task).permit(:content, :status)
+    params.require(:task).permit(:content, :status, :user_id)
   end
   
 end
