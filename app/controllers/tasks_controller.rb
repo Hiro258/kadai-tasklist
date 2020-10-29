@@ -10,7 +10,14 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
+    #before_actionにより事前にcorrect_userが実行されて @taskが定義される。
+    #この値を使用される。
+    #参考箇所：カリキュラム8.7 ログイン要求処理
+    #before_action では only: で指定されたアクションに対して、事前処理を
+    #設定できます。
+    
+    #【レビュー指摘】下記不要な記述をしていた。
+    #@task = Task.find(params[:id])
   end
 
   def new

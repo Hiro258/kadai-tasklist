@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  
 
   def create
     email = params[:session][:email].downcase
@@ -19,7 +18,7 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
   
-    private
+  private
 
   def login(email, password)
     @user = User.find_by(email: email)
