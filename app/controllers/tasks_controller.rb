@@ -15,7 +15,6 @@ class TasksController < ApplicationController
     #参考箇所：カリキュラム8.7 ログイン要求処理
     #before_action では only: で指定されたアクションに対して、事前処理を
     #設定できます。
-    
     #【レビュー指摘】下記不要な記述をしていた。
     #@task = Task.find(params[:id])
   end
@@ -40,11 +39,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-     @task = Task.find(params[:id])
 
     if @task.update(task_params)
       flash[:success] = 'タスク は正常に更新されました'
